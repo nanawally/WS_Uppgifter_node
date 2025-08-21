@@ -1,3 +1,4 @@
 node_modules/
 .env
-src/security/validateEnv.ts
+dist/
+#src/security/validateEnv.ts

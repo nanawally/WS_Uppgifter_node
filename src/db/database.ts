@@ -1,7 +1,6 @@
 import { Db, MongoClient, ServerApiVersion } from "mongodb";
 import { validateSecret } from "../security/validateEnv.js";
 
-// Runtime-Validation
 const uri: string = validateSecret(process.env.DB_CONNECTION_STRING);
 const dbName: string = validateSecret(process.env.DB_NAME);
 
@@ -15,11 +14,9 @@ const client = new MongoClient(uri, {
 
 let isConnected = false;
 
-/** Attempts to connect to database.
- * Returns a promise.
- * Throws error at failed attempt. */
+
 export async function runDB(): Promise<void> {
-  if (isConnected) return; // prevent duplicate connects
+  if (isConnected) return;
   try {
     await client.connect();
     await client.db("admin").command({ ping: 1 });
